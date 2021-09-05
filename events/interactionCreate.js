@@ -12,7 +12,8 @@ module.exports = {
                     const infoEmbed = new MessageEmbed() 
                     .setTitle(interaction.component.label)
                     .setDescription(res)
-                    .setColor("ORANGE");
+                    .setColor("ORANGE")
+                    .setFooter("Bot mantenuto da nik2143#2237","https://cdn.discordapp.com/avatars/303461696092241920/e5865465542bacdfcf210754076b6930.webp");
                     interaction.editReply({ embeds: [infoEmbed] , components:[]})
                 })
                 .catch(ex=>console.log(ex))

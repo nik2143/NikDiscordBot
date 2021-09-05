@@ -1,5 +1,5 @@
 const {MessageMentions,Util} = require("discord.js");
-
+const config = require("../config.json");
 
 module.exports = {
     name: "move",
@@ -8,12 +8,12 @@ module.exports = {
     memberPermissions: ["MANAGE_MESSAGES"],
     async execute(message,args) {
 		if (!args[0]) {
-			message.channel.send('Uso: `=move <canale in cui spostare>`').then((msg)=>{
+			message.channel.send(`Uso: ${config.prefix}move <canale in cui spostare>`).then((msg)=>{
                 setTimeout(() => {
                     message.delete();
                     msg.delete()
                 }, 5000);
-            });;
+            });
 			return;
 		}
 

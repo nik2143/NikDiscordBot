@@ -3,7 +3,7 @@ const truthOrDareGame = require("./api/truthOrDareGameAPI.js");
 const utils = require("./utils")
 const sites = ["psycat","truthordaregame"];
 const Cryptr = require('cryptr');
-const cryptr = new Cryptr(process.env.DECRYPT-PASSWORD);
+const cryptr = new Cryptr(process.env.DECRYPT_PASSWORD);
 const localQuestions = JSON.parse(cryptr.decrypt(require("./data/localquestions.json")));
 
 module.exports.getQuestion = async function getQuestion(){

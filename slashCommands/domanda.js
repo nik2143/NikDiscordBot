@@ -13,6 +13,7 @@ module.exports = {
             const answerembed = new MessageEmbed()
             .addField('⭐Domanda⭐', question)
             .setColor('YELLOW')
+            .setFooter("Bot mantenuto da nik2143#2237\nDomande fornite da Mr. Dick#6384","https://cdn.discordapp.com/avatars/303461696092241920/e5865465542bacdfcf210754076b6930.webp");
             return interaction.editReply({ embeds: [answerembed] });
         })
 	},
