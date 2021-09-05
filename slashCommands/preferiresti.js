@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const questoOQuello = require("./../api/questoOQuelloAPI.js");
-const { MessageActionRow } = require('discord.js');
+const { MessageActionRow,MessageButton } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -12,12 +12,12 @@ module.exports = {
         .then((domande) => {
             const row = new MessageActionRow()
             .addComponents(
-                new Discord.MessageButton()
+                new MessageButton()
                     .setCustomId('primary')
                     .setLabel(domande[0])
                     .setStyle('DANGER')
                     .setDisabled(true),
-                new Discord.MessageButton()
+                new MessageButton()
                     .setCustomId('secondary')
                     .setLabel(domande[1])
                     .setStyle('SUCCESS')
