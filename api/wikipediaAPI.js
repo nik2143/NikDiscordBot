@@ -35,7 +35,7 @@ module.exports.getInfo = async function getInfo(pageTitle){
           if (el.className=="toc") break
         }
         parts.forEach(textpart=>gotinfo.push(textpart.textContent));
-        info = gotinfo.join("\n");
+        info = gotinfo.join("");
       })
       info = info.replace(/(\[\d+\])/g,"");
       return resolve(info);
@@ -44,34 +44,6 @@ module.exports.getInfo = async function getInfo(pageTitle){
     }
   })
 };
-
-/*module.exports.getInfo = async function getInfo(pageTitle){
-  return new Promise(async (resolve,reject)=>{
-    try {
-      const browser = await puppeteer.launch();
-      const page = await browser.newPage();
-      await page.goto(getUrl(pageTitle));
-      let info = await page.evaluate(() => {
-          let gotinfo = [];
-          let arr = document.querySelector("#mw-content-text > div.mw-parser-output").childNodes;
-          let parts = [];
-          for (let el of arr) {
-            if (el.tagName=="P") {
-              parts.push(el);
-            }
-            if (el.className=="toc") break
-          }
-          parts.forEach(textpart=>gotinfo.push(textpart.innerText));
-          return gotinfo.join("\n");
-      })
-      browser.close();
-      info = info.replace(/(\[\d+\])/g,"");
-      return resolve(info);
-    } catch (e) {
-        return reject(e);
-    }
-  })
-};*/
 
 function getUrl(pageTitle){
   pageTitle = pageTitle.replace(/ /g, '_');
