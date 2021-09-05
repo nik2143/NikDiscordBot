@@ -50,7 +50,7 @@ module.exports = {
 			return;
 		}
 
-		if (toChannel.type !== 'GUILD_TEXT') {
+		if (!toChannel.isText()) {
 			message.channel.send('Il canale menzionato non è un canale di testo').then((msg)=>{
                 setTimeout(() => {
                     message.delete();
