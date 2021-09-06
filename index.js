@@ -13,24 +13,6 @@ const slashCommandFiles = fs.readdirSync('./slashCommands').filter(file => file.
 const messageCommandFiles = fs.readdirSync('./messageCommands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
-client.setupCommands = async function setupCommands(){
-    const commands = [];
-    for (const file of slashCommandFiles) {
-        const command = require(`./slashCommands/${file}`);
-        commands.push(command.data.toJSON());
-    }
-    const rest = new REST({ version: '9' }).setToken(token);
-	try {
-		await rest.put(
-			Routes.applicationGuildCommands(config.appid, "867415233235910666"),
-			{ body: commands },
-		);
-		console.log('Successfully registered application commands.');
-	} catch (error) {
-		console.error(error);
-	}
-}
-
 for (const file of slashCommandFiles) {
 	const command = require(`./slashCommands/${file}`);
 	client.slashCommands.set(command.data.name, command);
