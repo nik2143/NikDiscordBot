@@ -8,7 +8,7 @@ module.exports = {
 		.setName('meme')
 		.setDescription('Invia meme random'),
 	async execute(interaction) {
-        if (interaction.channelId !== config.memeChannel){
+        if (config.memeChannel!==-1 && interaction.channelId !== config.memeChannel){
           return interaction.reply({ content: "Questo comando può essere usato solo nel canale meme", ephemeral: true});
         }
         await interaction.deferReply();
