@@ -7,10 +7,14 @@ const cryptr = new Cryptr(process.env.DECRYPT_PASSWORD);
 const localQuestions = JSON.parse(cryptr.decrypt(require("./data/localquestions.json")));
 
 module.exports.getQuestion = async function getQuestion(){
-    return new Promise((resolve)=>{
-        getRemoteQuestion()
-        .then((remotequestion) => resolve(remotequestion))
-        .catch(() => resolve(getLocalQuestion()));
+    return new Promise(async (resolve)=>{
+        var question;
+        do {
+          await getRemoteQuestion()
+          .then((remotequestion) => question = remotequestion)
+          .catch(() => question = getLocalQuestion());
+        } while (isExplicit(question));
+        resolve(question);
     })
 };
 
@@ -37,3 +41,10 @@ async function getRemoteQuestion(){
 function getLocalQuestion(){
     return localQuestions[utils.getRandomIndex(localQuestions)];
 };
+
+function isExplicit(question){
+    if (question.includes("sesso")
+    ||question.includes("sessuale") 
+    ||question.includes("sextoys")) return true;
+    return false;
+  }
